@@ -4,3 +4,12 @@ services:
 script:
     - docker build -t catenova/node .
     - docker images catenova/node
+
+before_deploy:
+    - docker login -u catenova -p Creativee
+
+deploy:
+    provider: script
+    script: docker push catenova/node
+    on:
+        branch: master
